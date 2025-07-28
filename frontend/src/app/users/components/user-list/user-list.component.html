@@ -1,0 +1,91 @@
+<p-toast position="bottom-right"></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="user-list-container">
+  <div class="header-section">
+    <div class="header-logo">
+      <img src="assets/images/logos/deskbird-logo-black.svg" alt="deskbird" />
+    </div>
+    <div class="header-actions">
+      <div class="user-info" *ngIf="currentUser$ | async as currentUser">
+        <span class="user-name">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+        <p-tag [value]="(currentUser.role || 'USER').toUpperCase()"
+          [severity]="getRoleSeverity(currentUser.role)"></p-tag>
+      </div>
+      <button pButton label="Log out" icon="pi pi-sign-out" iconPos="right" class="p-button-text logout-button"
+        (click)="logout()">
+      </button>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="page-header">
+      <h2 class="page-title">User management</h2>
+      <div class="action-buttons" *ngIf="isAdmin$ | async">
+        <button pButton label="Seed test users" icon="pi pi-database" class="p-button-secondary seed-button"
+          (click)="seedTestUsers()">
+        </button>
+        <button pButton label="Add user" icon="pi pi-plus" class="add-user-button" (click)="addNewUser()">
+        </button>
+      </div>
+    </div>
+
+
+    <div class="table-container">
+      <div class="table-header">
+        <span class="p-input-icon-left search-box">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Search users..."
+            (input)="table.filterGlobal($event.target.value, 'contains')" class="search-input">
+        </span>
+      </div>
+
+      <p-table #table [value]="users" [loading]="(loading$ | async) || false" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10, 20, 50]" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} users"
+        [globalFilterFields]="['email', 'firstName', 'lastName', 'role']" responsiveLayout="scroll" sortMode="single"
+        [sortField]="'createdAt'" [sortOrder]="-1">
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="firstName">First name <p-sortIcon field="firstName"></p-sortIcon></th>
+            <th pSortableColumn="lastName">Last name <p-sortIcon field="lastName"></p-sortIcon></th>
+            <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon></th>
+            <th pSortableColumn="createdAt">Created at <p-sortIcon field="createdAt"></p-sortIcon></th>
+            <th *ngIf="isAdmin$ | async">Actions</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-user>
+          <tr>
+            <td>{{ user.email }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>
+              <p-tag [value]="(user.role || 'USER').toUpperCase()" [severity]="getRoleSeverity(user.role)"></p-tag>
+            </td>
+            <td>{{ user.createdAt | date:'short' }}</td>
+            <td *ngIf="isAdmin$ | async">
+              <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-warning"
+                pTooltip="Edit user" tooltipPosition="top" (click)="editUser(user)">
+              </button>
+              <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger"
+                [pTooltip]="(currentUser$ | async)?.id === user.id ? 'Cannot delete current user' : 'Delete user'"
+                tooltipPosition="top" (click)="deleteUser(user)" [disabled]="(currentUser$ | async)?.id === user.id">
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td [attr.colspan]="(isAdmin$ | async) ? 6 : 5" class="text-center">
+              No users found
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

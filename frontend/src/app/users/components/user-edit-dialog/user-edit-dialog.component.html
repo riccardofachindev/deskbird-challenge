@@ -1,0 +1,85 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <label for="email" class="block">Email *</label>
+    <input 
+      pInputText 
+      id="email" 
+      formControlName="email" 
+      class="w-full"
+      [class.ng-invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+      autofocus>
+    <small class="p-error" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      Please enter a valid email
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="password" class="block">
+      Password <span *ngIf="!isEditMode">*</span>
+    </label>
+    <p-password 
+      id="password" 
+      formControlName="password" 
+      [feedback]="true"
+      styleClass="w-full"
+      [inputStyleClass]="'w-full'"
+      [placeholder]="isEditMode ? 'Leave empty to keep current password' : 'Enter password'"
+      [autofocus]="false">
+    </p-password>
+    <small class="p-error" *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+      Password must be at least 6 characters
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="firstName" class="block">First name *</label>
+    <input 
+      pInputText 
+      id="firstName" 
+      formControlName="firstName" 
+      class="w-full"
+      [class.ng-invalid]="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+    <small class="p-error" *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+      First name is required
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="lastName" class="block">Last name *</label>
+    <input 
+      pInputText 
+      id="lastName" 
+      formControlName="lastName" 
+      class="w-full"
+      [class.ng-invalid]="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched">
+    <small class="p-error" *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched">
+      Last name is required
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="role" class="block">Role *</label>
+    <select 
+      id="role" 
+      formControlName="role" 
+      class="w-full p-inputtext">
+      <option *ngFor="let role of roles" [value]="role.value">{{ role.label }}</option>
+    </select>
+  </div>
+
+  <div class="dialog-footer">
+    <button 
+      pButton 
+      type="button" 
+      label="Cancel" 
+      class="p-button-text" 
+      (click)="onCancel()">
+    </button>
+    <button 
+      pButton 
+      type="submit" 
+      [label]="isEditMode ? 'Update' : 'Create'" 
+      [disabled]="userForm.invalid">
+    </button>
+  </div>
+</form>

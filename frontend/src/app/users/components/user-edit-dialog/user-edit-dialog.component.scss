@@ -1,0 +1,178 @@
+.field {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--deskbird-gray-700);
+    font-size: 0.875rem;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .p-error {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--deskbird-error);
+  }
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+::ng-deep {
+  .p-dialog-mask {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+  
+  .p-dialog {
+    .p-dialog-header {
+      background: white;
+      border-bottom: 1px solid var(--deskbird-gray-200);
+      padding: 1.5rem;
+
+      .p-dialog-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--deskbird-gray-900);
+      }
+
+      .p-dialog-header-icon {
+        color: var(--deskbird-gray-600);
+        width: 2rem;
+        height: 2rem;
+
+        &:hover {
+          background: var(--deskbird-gray-100);
+        }
+      }
+    }
+
+    .p-dialog-content {
+      padding: 1.5rem;
+    }
+  }
+
+  .p-inputtext,
+  .p-dropdown {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--deskbird-gray-300);
+    border-radius: var(--deskbird-radius);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--deskbird-purple);
+      box-shadow: 0 0 0 3px rgba(118, 70, 255, 0.1);
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: var(--deskbird-error);
+    }
+  }
+
+  select.p-inputtext {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 3rem;
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: var(--deskbird-gray-100);
+      color: var(--deskbird-gray-500);
+      opacity: 0.7;
+    }
+  }
+
+  .p-dropdown {
+    &.p-dropdown-open {
+      border-color: var(--deskbird-purple);
+      box-shadow: 0 0 0 3px rgba(118, 70, 255, 0.1);
+    }
+  }
+
+  .p-dropdown-panel {
+    border: 1px solid var(--deskbird-gray-200);
+    border-radius: var(--deskbird-radius);
+    box-shadow: var(--deskbird-shadow-lg);
+    margin-top: 0.25rem;
+
+    .p-dropdown-item {
+      padding: 0.75rem 1rem;
+      color: var(--deskbird-gray-700);
+
+      &:hover {
+        background: var(--deskbird-gray-100);
+      }
+
+      &.p-highlight {
+        background: var(--deskbird-purple);
+        color: white;
+      }
+    }
+  }
+
+  .p-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+
+    .p-checkbox-box {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid var(--deskbird-gray-300);
+      border-radius: var(--deskbird-radius);
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: var(--deskbird-purple);
+      }
+
+      &.p-highlight {
+        background: var(--deskbird-purple);
+        border-color: var(--deskbird-purple);
+      }
+    }
+  }
+
+  .p-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--deskbird-radius);
+    transition: all 0.2s ease;
+
+    &.p-button-text {
+      color: var(--deskbird-gray-600);
+      border: 1px solid transparent;
+
+      &:hover {
+        background: var(--deskbird-gray-100);
+        border: 1px solid transparent;
+      }
+    }
+
+    &.p-button-primary {
+      background: var(--deskbird-purple);
+      border-color: var(--deskbird-purple);
+
+      &:hover:not(:disabled) {
+        background: var(--deskbird-purple-hover);
+        border-color: var(--deskbird-purple-hover);
+      }
+    }
+  }
+}

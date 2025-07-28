@@ -1,0 +1,58 @@
+<div class="login-container">
+  <div class="login-header">
+    <div class="login-logo">
+      <img src="assets/images/logos/deskbird-logo.svg" alt="deskbird" />
+    </div>
+  </div>
+
+  <div class="login-content">
+    <div class="login-card">
+      <div class="login-owl-section">
+        <img src="assets/images/logos/deskbird-owl.png" alt="Deskbird" class="owl-logo" />
+      </div>
+
+      <h1 class="login-title">Sign in to deskbird</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-field">
+          <input #emailInput type="email" id="email" formControlName="email" placeholder="Enter your email" class="form-input"
+            [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <div class="error-text" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Email is required
+          </div>
+        </div>
+
+        <div class="form-field">
+          <div class="password-field">
+            <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+              placeholder="Enter your password" class="form-input"
+              [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <button type="button" class="password-toggle" (click)="togglePasswordVisibility()"
+              [pTooltip]="showPassword ? 'Hide password' : 'Show password'" tooltipPosition="top"
+              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+              <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+            </button>
+          </div>
+          <div class="error-text" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Password must be at least 6 characters
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button" [disabled]="loginForm.invalid || (loading$ | async)">
+          <span *ngIf="!(loading$ | async)">Sign in</span>
+          <span *ngIf="(loading$ | async)" class="loading">Signing in...</span>
+        </button>
+      </form>
+
+
+      <div class="error-message" *ngIf="error$ | async as error">
+        {{ error }}
+      </div>
+
+      <div class="test-credentials">
+        <p><strong>Test credentials:</strong></p>
+        <p>Email: admin@deskbird.com / Password: admin123</p>
+      </div>
+    </div>
+  </div>
+</div>

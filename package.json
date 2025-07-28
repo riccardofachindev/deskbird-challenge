@@ -1,0 +1,14 @@
+{
+  "name": "deskbird-challenge",
+  "version": "1.0.0",
+  "description": "Deskbird Full-Stack Challenge",
+  "scripts": {
+    "start:backend": "cd backend && npm run start:dev",
+    "start:frontend": "cd frontend && npm start",
+    "start:db": "docker compose up -d",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

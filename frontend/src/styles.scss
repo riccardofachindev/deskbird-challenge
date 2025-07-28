@@ -1,0 +1,318 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+/* Deskbird Design System Variables */
+:root {
+  --deskbird-purple: #7646ff;
+  --deskbird-purple-hover: #5b26f3;
+  --deskbird-purple-active: #4920c0;
+  --deskbird-gradient: linear-gradient(135deg, #7646ff 0%, #5b26f3 100%);
+  --deskbird-gray-100: #f9fafb;
+  --deskbird-gray-200: #f3f4f6;
+  --deskbird-gray-300: #e5e7eb;
+  --deskbird-gray-400: #d1d5db;
+  --deskbird-gray-500: #9ca3af;
+  --deskbird-gray-600: #6b7280;
+  --deskbird-gray-700: #4b5563;
+  --deskbird-gray-800: #1f2937;
+  --deskbird-gray-900: #111827;
+  --deskbird-error: #ef4444;
+  --deskbird-success: #10b981;
+  --deskbird-warning: #f59e0b;
+  --deskbird-info: #3b82f6;
+  --deskbird-radius: 0.5rem;
+  --deskbird-radius-lg: 0.75rem;
+  --deskbird-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --deskbird-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'ProximaNova', 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--deskbird-gray-800);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* PrimeNG Component Overrides */
+.p-component {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Buttons */
+.p-button {
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--deskbird-radius);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  .p-button-icon-left {
+    margin-right: 0.5rem;
+  }
+
+  .p-button-icon-right {
+    margin-left: 0.5rem;
+  }
+
+  .pi {
+    font-size: 1rem;
+    line-height: 1;
+  }
+}
+
+/* Primary Button */
+.p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-secondary) {
+  background: var(--deskbird-purple);
+  color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-secondary):hover:not(:disabled) {
+  background: var(--deskbird-purple-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(118, 70, 255, 0.3);
+}
+
+.p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-secondary):active:not(:disabled) {
+  background: var(--deskbird-purple-active);
+  transform: translateY(0);
+}
+
+/* Secondary/Outlined Button */
+.p-button.p-button-outlined,
+.p-button.p-button-secondary {
+  background: transparent;
+  color: var(--deskbird-purple);
+  border: 2px solid var(--deskbird-purple);
+}
+
+.p-button.p-button-outlined:hover:not(:disabled),
+.p-button.p-button-secondary:hover:not(:disabled) {
+  background: var(--deskbird-purple);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(118, 70, 255, 0.2);
+}
+
+/* Text Button */
+.p-button.p-button-text {
+  background: transparent;
+  color: var(--deskbird-purple);
+  border: 1px solid transparent;
+  padding: 0.625rem 1rem;
+}
+
+.p-button.p-button-text:hover:not(:disabled) {
+  background: rgba(118, 70, 255, 0.08);
+}
+
+/* Disabled State */
+.p-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.p-button.p-button-danger {
+  background: var(--deskbird-error);
+  border-color: var(--deskbird-error);
+}
+
+.p-button.p-button-success {
+  background: var(--deskbird-success);
+  border-color: var(--deskbird-success);
+}
+
+/* Input Fields */
+.p-inputtext {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--deskbird-gray-300);
+  border-radius: var(--deskbird-radius);
+  width: 100%;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.p-inputtext:focus {
+  outline: none;
+  border-color: var(--deskbird-purple);
+  box-shadow: 0 0 0 3px rgba(118, 70, 255, 0.1);
+}
+
+.p-inputtext.ng-invalid.ng-touched {
+  border-color: var(--deskbird-error);
+}
+
+/* Cards */
+.p-card {
+  background: white;
+  border: none;
+  border-radius: var(--deskbird-radius-lg);
+  box-shadow: var(--deskbird-shadow-lg);
+  overflow: hidden;
+}
+
+.p-card .p-card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--deskbird-gray-200);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--deskbird-gray-900);
+}
+
+.p-card .p-card-content {
+  padding: 1.5rem;
+}
+
+/* Tables */
+.p-datatable {
+  border: 1px solid var(--deskbird-gray-200);
+  border-radius: var(--deskbird-radius);
+  overflow: hidden;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  background: var(--deskbird-gray-50);
+  border: none;
+  border-bottom: 1px solid var(--deskbird-gray-200);
+  color: var(--deskbird-gray-700);
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.p-datatable .p-datatable-tbody>tr {
+  border-bottom: 1px solid var(--deskbird-gray-200);
+}
+
+.p-datatable .p-datatable-tbody>tr:hover {
+  background: var(--deskbird-gray-50);
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  padding: 1rem;
+  border: none;
+}
+
+/* Tags */
+.p-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.p-tag.p-tag-danger {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.p-tag.p-tag-info {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.p-tag.p-tag-success {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.p-tag.p-tag-warning {
+  background: #fed7aa;
+  color: #ea580c;
+}
+
+/* Dialogs */
+.p-dialog {
+  border-radius: var(--deskbird-radius-lg);
+  box-shadow: var(--deskbird-shadow-lg);
+}
+
+.p-dialog .p-dialog-header {
+  background: white;
+  border-bottom: 1px solid var(--deskbird-gray-200);
+  padding: 1.5rem;
+  border-radius: var(--deskbird-radius-lg) var(--deskbird-radius-lg) 0 0;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 1.5rem;
+}
+
+/* Error Messages */
+.p-error {
+  color: var(--deskbird-error);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Loading Spinner */
+.p-button-loading-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utility Classes */
+.w-full {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.gradient-bg {
+  background: var(--deskbird-gradient);
+  min-height: 100vh;
+}
+
+/* Global Tooltip Styling */
+.p-tooltip {
+  .p-tooltip-arrow {
+    display: none;
+  }
+
+  .p-tooltip-text {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-weight: 400;
+  }
+}
