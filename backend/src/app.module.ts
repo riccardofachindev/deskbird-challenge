@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
+        const databaseUrl = configService.get('DATABASE_URL');
         const dbType = configService.get('DATABASE_TYPE', 'postgres');
         
         if (dbType === 'sqlite') {
@@ -24,10 +25,24 @@ import { AuthModule } from './auth/auth.module';
           };
         }
         
+        // If DATABASE_URL is provided (like on Render), use it
+        if (databaseUrl) {
+          return {
+            type: 'postgres',
+            url: databaseUrl,
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            synchronize: true,
+            ssl: {
+              rejectUnauthorized: false
+            }
+          };
+        }
+        
+        // Otherwise use individual variables (for local development)
         return {
           type: 'postgres',
-          host: configService.get('DATABASE_HOST'),
-          port: +configService.get('DATABASE_PORT'),
+          host: configService.get('DATABASE_HOST', 'localhost'),
+          port: +configService.get('DATABASE_PORT', 5432),
           username: configService.get('DATABASE_USER'),
           password: configService.get('DATABASE_PASSWORD'),
           database: configService.get('DATABASE_NAME'),
