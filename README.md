@@ -1,4 +1,4 @@
-# Deskbird Senior Full-Stack Challenge
+# Full-Stack prototype app for Deskbird's users table
 
 A full-stack application featuring user authentication and management with role-based access control.
 
